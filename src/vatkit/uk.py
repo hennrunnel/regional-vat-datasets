@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Tuple
 from rich import print as rprint
 
 
@@ -17,6 +17,70 @@ def fetch_uk_vat_rates() -> Dict[str, Any]:
         return {"error": str(e), "url": url}
 
 
+def _derive_group_and_short(label: str, rate_type: str) -> Tuple[str, str]:
+    text = (label or "").lower()
+    group = "Other"
+    short = label
+    # Order matters: match broader sections first
+    if "charit" in text:
+        group = "Charities"
+    elif any(k in text for k in ["electricity", "gas", "heating", "fuel", "water", "sewer", "utilities"]):
+        group = "Energy & Utilities"
+    elif any(k in text for k in ["energy-saving", "insulation", "solar", "heat pump", "renewable"]):
+        group = "Energy-saving Materials"
+    elif "building" in text or "construction" in text or "dwelling" in text or "residential" in text:
+        group = "Building & Construction"
+    elif "land" in text or "property" in text or "leasehold" in text or "freehold" in text:
+        group = "Land & Property"
+    elif any(k in text for k in ["passenger", "transport"]):
+        group = "Passenger Transport"
+    elif "freight" in text:
+        group = "Freight"
+    elif any(k in text for k in ["aircraft", "helicopter", "ship", "boat", "shipbuilding"]):
+        group = "Aviation & Shipping"
+    elif any(k in text for k in ["book", "magazine", "newspaper", "publication", "leaflet", "pamphlet", "printing", "postage"]):
+        group = "Publications & Postage"
+    elif any(k in text for k in ["clothes", "footwear", "babywear", "helmet", "protective", "car seat"]):
+        group = "Clothing & Protective"
+    elif any(k in text for k in ["medical", "pharmac", "prescription", "disabled", "incontinence", "equipment"]):
+        group = "Medical & Care"
+    elif any(k in text for k in ["finance", "credit", "security", "investment"]):
+        group = "Financial Services"
+    elif "insurance" in text:
+        group = "Insurance"
+    # Prefer concise short names per group
+    if group == "Charities":
+        short = "Charities"
+    elif group == "Energy & Utilities":
+        short = "Energy (domestic)"
+    elif group == "Energy-saving Materials":
+        short = "Energy-saving materials"
+    elif group == "Building & Construction":
+        short = "Building & construction"
+    elif group == "Land & Property":
+        short = "Land & property"
+    elif group == "Passenger Transport":
+        short = "Passenger transport"
+    elif group == "Freight":
+        short = "Freight"
+    elif group == "Aviation & Shipping":
+        short = "Aviation & shipping"
+    elif group == "Publications & Postage":
+        short = "Publications & postage"
+    elif group == "Clothing & Protective":
+        short = "Clothing & protective"
+    elif group == "Medical & Care":
+        short = "Medical & care"
+    elif group == "Financial Services":
+        short = "Financial services"
+    elif group == "Insurance":
+        short = "Insurance"
+    elif rate_type == "Standard":
+        group = "Standard"
+        short = "Standard"
+    return group, short
+
+
 def parse_uk_html(html_content: str) -> Dict[str, Any]:
     """Parse ALL UK VAT rates from GOV.UK HTML - comprehensive extraction from all tables."""
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -25,12 +89,15 @@ def parse_uk_html(html_content: str) -> Dict[str, Any]:
     tables = soup.find_all('table')
     rprint(f"[blue]Found {len(tables)} tables on GOV.UK[/blue]")
     
-    all_categories = []
+    all_categories: List[Dict[str, Any]] = []
     
     # UK VAT works by EXCEPTION - everything not listed is Standard rate (20%)
     # Add Standard rate as the first category
+    std_group, std_short = _derive_group_and_short("Standard Rate (Default)", "Standard")
     all_categories.append({
         "label": "Standard Rate (Default)",
+        "label_short": std_short,
+        "group": std_group,
         "rate_percent": 20.0,
         "rate_type": "Standard",
         "reference": "Default UK VAT rate",
@@ -72,18 +139,21 @@ def parse_uk_html(html_content: str) -> Dict[str, Any]:
                 
                 # Clean up category name
                 category_name = category_name.replace('\n', ' ').strip()
-                if len(category_name) > 100:  # Truncate very long names
-                    category_name = category_name[:97] + "..."
+                if len(category_name) > 160:  # Truncate very long names for readability
+                    category_name = category_name[:157] + "..."
                 
                 # Get reference info if available
                 reference = ""
                 if len(cells) >= 3:
                     ref_cell = cells[2].get_text(strip=True)
-                    if "VAT Notice" in ref_cell:
+                    if "VAT Notice" in ref_cell or "Notice" in ref_cell:
                         reference = ref_cell
                 
+                group, short = _derive_group_and_short(category_name, rate_type)
                 category = {
                     "label": category_name,
+                    "label_short": short,
+                    "group": group,
                     "rate_percent": rate_percent,
                     "rate_type": rate_type,
                     "reference": reference,
@@ -95,12 +165,10 @@ def parse_uk_html(html_content: str) -> Dict[str, Any]:
     rprint(f"[blue]Extracted {len(all_categories)} VAT categories from GOV.UK (including Standard rate default)[/blue]")
     
     # Group by rate type for summary
-    rate_summary = {}
+    rate_summary: Dict[str, List[str]] = {}
     for cat in all_categories:
         rate_type = cat["rate_type"]
-        if rate_type not in rate_summary:
-            rate_summary[rate_type] = []
-        rate_summary[rate_type].append(cat["label"])
+        rate_summary.setdefault(rate_type, []).append(cat["label_short"])  # summarize by short labels
     
     uk_rates = {
         "country": "United Kingdom",

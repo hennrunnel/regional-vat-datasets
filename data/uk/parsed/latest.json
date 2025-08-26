@@ -5,606 +5,130 @@
       "name": "United Kingdom",
       "categories": [
         {
-          "label": "Standard Rate (Default)",
+          "label": "Aviation & Shipping (0%)",
+          "label_short": "Aviation & Shipping (0%)",
+          "group": "Aviation & Shipping",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Building & Construction (0%)",
+          "label_short": "Building & Construction (0%)",
+          "group": "Building & Construction",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Building & Construction (5%)",
+          "label_short": "Building & Construction (5%)",
+          "group": "Building & Construction",
+          "rate_percent": 5.0,
+          "rate_type": "Reduced"
+        },
+        {
+          "label": "Charities (0%)",
+          "label_short": "Charities (0%)",
+          "group": "Charities",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Charities (5%)",
+          "label_short": "Charities (5%)",
+          "group": "Charities",
+          "rate_percent": 5.0,
+          "rate_type": "Reduced"
+        },
+        {
+          "label": "Clothing & Protective (0%)",
+          "label_short": "Clothing & Protective (0%)",
+          "group": "Clothing & Protective",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Clothing & Protective (5%)",
+          "label_short": "Clothing & Protective (5%)",
+          "group": "Clothing & Protective",
+          "rate_percent": 5.0,
+          "rate_type": "Reduced"
+        },
+        {
+          "label": "Energy & Utilities (0%)",
+          "label_short": "Energy & Utilities (0%)",
+          "group": "Energy & Utilities",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Energy & Utilities (5%)",
+          "label_short": "Energy & Utilities (5%)",
+          "group": "Energy & Utilities",
+          "rate_percent": 5.0,
+          "rate_type": "Reduced"
+        },
+        {
+          "label": "Energy-saving Materials (0%)",
+          "label_short": "Energy-saving Materials (0%)",
+          "group": "Energy-saving Materials",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Energy-saving Materials (5%)",
+          "label_short": "Energy-saving Materials (5%)",
+          "group": "Energy-saving Materials",
+          "rate_percent": 5.0,
+          "rate_type": "Reduced"
+        },
+        {
+          "label": "Freight (0%)",
+          "label_short": "Freight (0%)",
+          "group": "Freight",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Medical & Care (0%)",
+          "label_short": "Medical & Care (0%)",
+          "group": "Medical & Care",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Other (0%)",
+          "label_short": "Other (0%)",
+          "group": "Other",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Other (5%)",
+          "label_short": "Other (5%)",
+          "group": "Other",
+          "rate_percent": 5.0,
+          "rate_type": "Reduced"
+        },
+        {
+          "label": "Passenger Transport (0%)",
+          "label_short": "Passenger Transport (0%)",
+          "group": "Passenger Transport",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Publications & Postage (0%)",
+          "label_short": "Publications & Postage (0%)",
+          "group": "Publications & Postage",
+          "rate_percent": 0.0,
+          "rate_type": "Zero"
+        },
+        {
+          "label": "Standard (20%)",
+          "label_short": "Standard (20%)",
+          "group": "Standard",
           "rate_percent": 20.0,
-          "rate_type": "Standard",
-          "reference": "Default UK VAT rate",
-          "table_source": "UK VAT System"
-        },
-        {
-          "label": "Advertising services for charities",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 5"
-        },
-        {
-          "label": "Certain goods sold at charitable fundraising events",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 5"
-        },
-        {
-          "label": "Charity shops — selling donated goods",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 5"
-        },
-        {
-          "label": "Construction and sale of new buildings for a relevant charitable purpose",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 5"
-        },
-        {
-          "label": "Energy-saving materials permanently installed in dwellings and buildings used for a relevant resi...",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 5"
-        },
-        {
-          "label": "Building services for disabled people",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 6"
-        },
-        {
-          "label": "Mobility aids for the elderly",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 6"
-        },
-        {
-          "label": "Equipment for blind or partially sighted people",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 6"
-        },
-        {
-          "label": "Equipment for disabled people",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 6"
-        },
-        {
-          "label": "Smoking cessation products — nicotine patches and gum",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 6"
-        },
-        {
-          "label": "Magnetic tape adapted for recording speech for blind people together with apparatus for making an...",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 6"
-        },
-        {
-          "label": "Dispensing of prescriptions by a registered pharmacist",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 7"
-        },
-        {
-          "label": "Incontinence products",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 7"
-        },
-        {
-          "label": "Maternity pads",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 7"
-        },
-        {
-          "label": "Sanitary protection products",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 7"
-        },
-        {
-          "label": "Low vision aids",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 7"
-        },
-        {
-          "label": "Electricity for domestic and residential use or for non-business use by a charity",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 9"
-        },
-        {
-          "label": "Gas for domestic and residential use or for non-business use by a charity",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 9"
-        },
-        {
-          "label": "Heating oil for domestic and residential use or for non-business use by a charity",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 9"
-        },
-        {
-          "label": "Solid fuel for domestic and residential use or for non-business use by a charity",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 9"
-        },
-        {
-          "label": "Cesspools, septic tanks or similar (domestic) — emptying",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 10"
-        },
-        {
-          "label": "Sewerage services supplied to domestic or industrial customers",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 10"
-        },
-        {
-          "label": "Water supplied to households",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 10"
-        },
-        {
-          "label": "Air source heat pumps",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Boilers — wood fuelled",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Central heating and hot water controls",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "VAT Notice 708/6",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Draught stripping",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Ground source heat pumps",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Insulation",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Micro combined heat and power units",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Solar panels",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Water and wind turbines",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 11"
-        },
-        {
-          "label": "Closed solid fuel fire cassettes",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "Electric dual immersion water heaters with factory-insulated hot water tanks",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "Electric storage heaters",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "Gas-fired boilers",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "Gas room heaters with thermostatic controls",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "VAT Notice 708/6",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "Oil-fired boilers",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "Radiators",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "The installation, repair and maintenance of a boiler, radiators, pipework and controls forming a ...",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "The installation, repair and maintenance of renewable source heating systems. This means space or...",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "Connection or reconnection to the mains gas supply",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 12"
-        },
-        {
-          "label": "Substantial reconstructions to protected buildings that are buildings used as a dwelling, for a r...",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "The installation of a bathroom or lavatory, constructing ramps and widening doorways or passagewa...",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "Construction and first freehold or long leasehold sale of a new building for a relevant charitabl...",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "Construction and first freehold or long leasehold sale of a new building for relevant residential...",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "Construction and first freehold or long leasehold sale of new domestic buildings",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "Converting existing premises by increasing the number of dwellings within the building",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "Renovating a dwelling that has been empty for at least 2 years",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "First freehold or long leasehold sale of a commercial building converted into a dwelling or dwell...",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "First freehold or long leasehold sale of buildings converted for relevant residential purposes",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "First freehold or long leasehold sale of buildings converted for relevant charitable purposes",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 13"
-        },
-        {
-          "label": "Sale or long lease of a new dwelling with garage or parking space",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 14"
-        },
-        {
-          "label": "Aircraft repair and maintenance",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 15"
-        },
-        {
-          "label": "Freight transport to or from a place outside the UK",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 16"
-        },
-        {
-          "label": "Freight containers — sale, lease or hire to a place outside the UK and the EU",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 16"
-        },
-        {
-          "label": "International freight transport that takes place in the UK and its territorial waters",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 16"
-        },
-        {
-          "label": "Passenger transport in a vehicle, boat or aircraft that carries not less than 10 passengers",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 17"
-        },
-        {
-          "label": "Aircraft repair and maintenance",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Airships — sale or charter",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Caravans (more than 7 metres long or more than 2.55 metres wide)",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Civil aeroplanes — sale or charter",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Helicopters — sale or charter",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Houseboats — sale or let out on hire",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Military aeroplanes — sale or charter",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Ship repairs and maintenance",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Shipbuilding — 15 tons or over gross tonnage",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 18"
-        },
-        {
-          "label": "Brochures",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 19"
-        },
-        {
-          "label": "Leaflets",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 19"
-        },
-        {
-          "label": "Pamphlets",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 19"
-        },
-        {
-          "label": "Books",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 21"
-        },
-        {
-          "label": "Children’s painting and picture books",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 21"
-        },
-        {
-          "label": "Maps and charts",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 21"
-        },
-        {
-          "label": "Magazines",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 21"
-        },
-        {
-          "label": "Newspapers",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 21"
-        },
-        {
-          "label": "Printed or copied music",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 21"
-        },
-        {
-          "label": "Publications",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 21"
-        },
-        {
-          "label": "Babywear",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 22"
-        },
-        {
-          "label": "Children’s clothes and footwear",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 22"
-        },
-        {
-          "label": "Carrycots with restraint straps",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 23"
-        },
-        {
-          "label": "Children’s car seats, booster seats and booster cushions",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 23"
-        },
-        {
-          "label": "Children’s safety seats with bare wheeled framework",
-          "rate_percent": 5.0,
-          "rate_type": "Reduced",
-          "reference": "",
-          "table_source": "Table 23"
-        },
-        {
-          "label": "Cycle helmets — CE marked",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 23"
-        },
-        {
-          "label": "Motorcycle helmets that meet safety standards",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 23"
-        },
-        {
-          "label": "Protective boots and helmets for industrial use",
-          "rate_percent": 0.0,
-          "rate_type": "Zero",
-          "reference": "",
-          "table_source": "Table 23"
+          "rate_type": "Standard"
         }
       ]
     }

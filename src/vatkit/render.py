@@ -84,7 +84,7 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
             '  - GOV.UK VAT rates: https://www.gov.uk/guidance/rates-of-vat-on-different-goods-and-services',
             '- Schema:',
             '  - country_fields: iso2, name',
-            '  - category_fields: label, rate_percent, description, eu_equivalent',
+            '  - category_fields: label_short (preferred), label, rate_percent, rate_type, group, reference',
             '',
         ])
         
@@ -107,7 +107,7 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
                         iso2 = c.get('iso2', '')
                         country = c.get('name', '')
                         for cat in c.get('categories', []):
-                            label = str(cat.get('label', ''))
+                            label = str(cat.get('label_short') or cat.get('label') or '')
                             rate = cat.get('rate_percent')
                             rate_s = str(rate) if rate is not None else 'N/A'
                             lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
@@ -151,7 +151,30 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
     }
     for r in selected_regions:
         if r.lower() not in ['eu', 'uk']:
-            lines.extend(['', f"## {region_names.get(r.lower(), r.upper())}", '', '_Coming soon (adapter stubbed)._'])
+            pretty = region_names.get(r.lower(), r.upper())
+            lines.extend(['', f"## {pretty}", '- Sources:'])
+            if r.lower() == 'ch':
+                lines.append('  - Swiss FTA VAT rates: https://www.estv.admin.ch/estv/en/home/value-added-tax/vat-rates.html')
+            lines.extend(['- Schema:', '  - country_fields: iso2, name', '  - category_fields: label, rate_percent', ''])
+            data_path = Path(f'data/{r.lower()}/parsed/latest.json')
+            if data_path.exists():
+                try:
+                    data = json.loads(data_path.read_text())
+                    countries = data.get('countries', [])
+                    if countries:
+                        lines.extend(['### ' + pretty + ' Dataset (full)', '', '| ' + ' | '.join(headers) + ' |', '| ' + ' | '.join(['---'] * len(headers)) + ' |'])
+                        for c in countries:
+                            iso2 = c.get('iso2', '')
+                            country = c.get('name', '')
+                            for cat in c.get('categories', []):
+                                label = str(cat.get('label', ''))
+                                rate = cat.get('rate_percent')
+                                rate_s = str(rate)
+                                lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
+                except Exception:
+                    lines.extend(['', f'_{pretty} data available but parsing failed._'])
+            else:
+                lines.extend(['', f'_{pretty} data not yet fetched._'])
     
     # Notes
     lines.extend([

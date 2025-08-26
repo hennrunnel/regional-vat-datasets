@@ -4,6 +4,7 @@ from rich import print as rprint
 from .tedb import fetch_vat_rates
 from .mapper import map_tedb_to_unified
 from .uk import fetch_uk_vat_rates, parse_uk_html
+from .ch import fetch_ch_vat_rates, parse_ch_html
 from .render import write_json
 
 
@@ -36,22 +37,34 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
         rprint("[bold]Parsing[/bold] UK HTML to unified model ...")
         uk_rates = parse_uk_html(uk_data["html"])
         
-        # Convert to unified format
+        # Merge UK categories by (group, rate_percent) and ensure distinct names per rate
+        detailed = [c for c in uk_rates["categories"] if c.get("rate_percent") is not None]
+        merged_map = {}
+        def rate_str(v: float) -> str:
+            try:
+                fv = float(v)
+                return f"{int(fv)}%" if abs(fv - int(fv)) < 1e-9 else f"{fv}%"
+            except Exception:
+                return str(v)
+        for c in detailed:
+            group = (c.get("group") or c.get("label_short") or c.get("label") or "Category").strip()
+            rate = c.get("rate_percent")
+            key = (group, rate)
+            if key not in merged_map:
+                merged_map[key] = {
+                    "label": f"{group} ({rate_str(rate)})",
+                    "label_short": f"{group} ({rate_str(rate)})",
+                    "group": group,
+                    "rate_percent": rate,
+                    "rate_type": c.get("rate_type"),
+                }
+        merged = sorted(merged_map.values(), key=lambda x: (x.get("group", ""), x.get("rate_percent", 0)))
+
         unified = {
             "countries": [{
                 "iso2": uk_rates["iso2"],
                 "name": uk_rates["country"],
-                "categories": [
-                    {
-                        "label": cat["label"],
-                        "rate_percent": cat["rate_percent"],
-                        "rate_type": cat["rate_type"],
-                        "reference": cat.get("reference", ""),
-                        "table_source": cat.get("table_source", "")
-                    }
-                    for cat in uk_rates["categories"]
-                    if cat["rate_percent"] is not None  # Skip exempt/outside scope for now
-                ]
+                "categories": merged,
             }]
         }
         
@@ -60,7 +73,26 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
         return unified
 
     # Placeholder adapters for upcoming regions
-    if region in {"ch", "no", "is", "ca"}:
+    if region == "ch":
+        rprint(f"[bold]Fetching[/bold] CH VAT rates from FTA ...")
+        ch_data = fetch_ch_vat_rates()
+        if "error" in ch_data:
+            rprint(f"[red]CH fetch failed: {ch_data['error']}[/red]")
+            return None
+        rprint("[bold]Parsing[/bold] CH HTML to unified model ...")
+        ch_rates = parse_ch_html(ch_data["html"])
+        unified = {
+            "countries": [{
+                "iso2": ch_rates["iso2"],
+                "name": ch_rates["country"],
+                "categories": ch_rates["categories"],
+            }]
+        }
+        rprint("[bold]Writing[/bold] CH outputs ...")
+        write_json(unified, region="ch")
+        return unified
+
+    if region in {"no", "is", "ca"}:
         rprint(f"[yellow]Region '{region.upper()}' adapter is not implemented yet. Skipping.[/yellow]")
         return None
 

@@ -1,0 +1,22 @@
+{
+  "countries": [
+    {
+      "iso2": "CH",
+      "name": "Switzerland",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 8.1
+        },
+        {
+          "label": "Reduced",
+          "rate_percent": 2.6
+        },
+        {
+          "label": "Special (Accommodation)",
+          "rate_percent": 3.8
+        }
+      ]
+    }
+  ]
+}
