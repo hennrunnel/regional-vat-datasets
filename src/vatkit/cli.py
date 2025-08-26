@@ -20,8 +20,9 @@ def sync(
     regions: Optional[str] = typer.Option("eu", "--regions", help="Comma-separated regions to sync (default: eu)"),
 ) -> None:
     """Fetch per region → map → write region-scoped JSON and update README grouped by region."""
+    # Snapshot mode defaults: use TODAY for from and snapshot
     if not date_from:
-        date_from = "2020-01-01"
+        date_from = date.today().isoformat()
     if not date_to:
         date_to = date.today().isoformat()
 

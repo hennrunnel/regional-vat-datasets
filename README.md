@@ -38,22 +38,6 @@ Official VAT category reference:
 | iso2 | country | category_label | rate_percent |
 | --- | --- | --- | --- |
 
-## United Kingdom
-
-_Coming soon (adapter stubbed)._
-
-## Switzerland
-
-_Coming soon (adapter stubbed)._
-
-## Norway
-
-_Coming soon (adapter stubbed)._
-
-## Canada
-
-_Coming soon (adapter stubbed)._
-
 ### Notes
 
 - TEDB is the authoritative EC source for VAT rates.
