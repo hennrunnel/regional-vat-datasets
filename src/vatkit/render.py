@@ -1,21 +1,21 @@
 import json
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 
 def ensure_dir(p: Path) -> None:
     p.mkdir(parents=True, exist_ok=True)
 
 
-def write_json(unified: Dict[str, Any]) -> Path:
-    out = Path('data/eu/parsed/latest.json')
+def write_json(unified: Dict[str, Any], region: str = 'eu') -> Path:
+    out = Path(f'data/{region}/parsed/latest.json')
     ensure_dir(out.parent)
     out.write_text(json.dumps(unified, indent=2, ensure_ascii=False) + "\n", encoding='utf-8')
     return out
 
 
-def write_markdown(unified: Dict[str, Any]) -> Path:
+def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path:
     out = Path('README.md')
     # Build table header
     headers = ['iso2', 'country', 'category_label', 'rate_percent']
@@ -78,6 +78,17 @@ def write_markdown(unified: Dict[str, Any]) -> Path:
             rate = cat.get('rate_percent')
             rate_s = str(rate)
             lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
+    # Other regions placeholder
+    region_names = {
+        'uk': 'United Kingdom',
+        'ch': 'Switzerland',
+        'no': 'Norway',
+        'is': 'Iceland',
+        'ca': 'Canada',
+    }
+    for r in selected_regions:
+        if r.lower() != 'eu':
+            lines.extend(['', f"## {region_names.get(r.lower(), r.upper())}", '', '_Coming soon (adapter stubbed)._'])
     # Notes
     lines.extend([
         '',
