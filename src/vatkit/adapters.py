@@ -8,6 +8,7 @@ from .ch import fetch_ch_vat_rates, parse_ch_html
 from .no import fetch_no_vat_rates, parse_no_html
 from .iceland import fetch_is_vat_rates, parse_is_html
 from .li import fetch_li_vat_rates, parse_li_html
+from .ca import fetch_ca_vat_rates, parse_ca
 from .render import write_json
 
 
@@ -154,9 +155,13 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
         write_json(unified, region="li")
         return unified
 
-    if region in {"ca"}:
-        rprint(f"[yellow]Region '{region.upper()}' adapter is not implemented yet. Skipping.[/yellow]")
-        return None
+    if region == "ca":
+        rprint(f"[bold]Building[/bold] CA GST/HST by province (step 1) ...")
+        data = fetch_ca_vat_rates()
+        ca_rates = parse_ca(data.get('provinces', []))
+        rprint("[bold]Writing[/bold] CA outputs ...")
+        write_json(ca_rates, region="ca")
+        return ca_rates
 
     rprint(f"[yellow]Unknown region '{region}'. Skipping.[/yellow]")
     return None

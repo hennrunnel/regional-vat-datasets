@@ -1,0 +1,134 @@
+{
+  "countries": [
+    {
+      "iso2": "CA-AB",
+      "name": "Alberta",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 5.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-BC",
+      "name": "British Columbia",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 5.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-MB",
+      "name": "Manitoba",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 5.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-NB",
+      "name": "New Brunswick",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 15.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-NL",
+      "name": "Newfoundland and Labrador",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 15.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-NS",
+      "name": "Nova Scotia",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 15.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-NT",
+      "name": "Northwest Territories",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 5.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-NU",
+      "name": "Nunavut",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 5.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-ON",
+      "name": "Ontario",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 13.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-PE",
+      "name": "Prince Edward Island",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 15.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-QC",
+      "name": "Quebec",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 5.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-SK",
+      "name": "Saskatchewan",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 5.0
+        }
+      ]
+    },
+    {
+      "iso2": "CA-YT",
+      "name": "Yukon",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 5.0
+        }
+      ]
+    }
+  ]
+}

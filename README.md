@@ -708,39 +708,30 @@ Official VAT category references:
 - UK: GOV.UK VAT rates guidance: https://www.gov.uk/guidance/rates-of-vat-on-different-goods-and-services
 
 
-## Iceland
+## Canada
 - Sources:
-  - RSK VAT rates: https://www.rsk.is/english/companies/value-added-tax/vat-rates/
+  - CRA GST/HST rates: https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst/gst-hst-rates.html
 - Schema:
   - country_fields: iso2, name
   - category_fields: label, rate_percent
 
-### Iceland Dataset (full)
+### Canada Dataset (full)
 
 | iso2 | country | category_label | rate_percent |
 | --- | --- | --- | --- |
-| IS | Iceland | Standard | 24.0 |
-| IS | Iceland | Foodstuffs | 11.0 |
-| IS | Iceland | Books | 11.0 |
-| IS | Iceland | Accommodation | 11.0 |
-
-## LI
-- Sources:
-  - Mirrors Switzerland VAT rates (CH)
-- Schema:
-  - country_fields: iso2, name
-  - category_fields: label, rate_percent
-
-### LI Dataset (full)
-
-| iso2 | country | category_label | rate_percent |
-| --- | --- | --- | --- |
-| LI | Liechtenstein | Standard | 8.1 |
-| LI | Liechtenstein | Foodstuffs | 2.6 |
-| LI | Liechtenstein | Books | 2.6 |
-| LI | Liechtenstein | Pharmaceutical Products | 2.6 |
-| LI | Liechtenstein | Broadcasting Services | 2.6 |
-| LI | Liechtenstein | Accommodation | 3.8 |
+| CA-AB | Alberta | Standard | 5.0 |
+| CA-BC | British Columbia | Standard | 5.0 |
+| CA-MB | Manitoba | Standard | 5.0 |
+| CA-NB | New Brunswick | Standard | 15.0 |
+| CA-NL | Newfoundland and Labrador | Standard | 15.0 |
+| CA-NS | Nova Scotia | Standard | 15.0 |
+| CA-NT | Northwest Territories | Standard | 5.0 |
+| CA-NU | Nunavut | Standard | 5.0 |
+| CA-ON | Ontario | Standard | 13.0 |
+| CA-PE | Prince Edward Island | Standard | 15.0 |
+| CA-QC | Quebec | Standard | 5.0 |
+| CA-SK | Saskatchewan | Standard | 5.0 |
+| CA-YT | Yukon | Standard | 5.0 |
 
 ### Notes
 
