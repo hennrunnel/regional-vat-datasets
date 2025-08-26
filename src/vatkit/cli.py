@@ -5,9 +5,8 @@ from typing import Optional, List
 import typer
 from rich import print as rprint
 
-from .tedb import fetch_vat_rates
-from .mapper import map_tedb_to_unified
-from .render import write_json, write_markdown
+from .adapters import run_region
+from .render import write_markdown
 
 
 app = typer.Typer(add_completion=False, help="Sync EU VAT dataset from TEDB and write JSON + Markdown.")
@@ -32,17 +31,12 @@ def sync(
         iso_list = None
 
     selected_regions = [r.strip().lower() for r in (regions or 'eu').split(',') if r.strip()]
-    # EU
-    if 'eu' in selected_regions:
-        rprint(f"[bold]Fetching[/bold] EU (TEDB) VAT rates from {date_from} to {date_to} ...")
-        tedb_doc = fetch_vat_rates(date_from=date_from, date_to=date_to, iso_list=iso_list)
-        rprint("[bold]Mapping[/bold] EU to unified model ...")
-        unified = map_tedb_to_unified(tedb_doc)
-        rprint("[bold]Writing[/bold] EU outputs ...")
-        write_json(unified, region='eu')
+    last_unified = None
+    for region in selected_regions:
+        last_unified = run_region(region, date_from=date_from, date_to=date_to, states=iso_list)
 
     # Render README with region list (EU populated; others stubs)
-    write_markdown(unified, selected_regions)
+    write_markdown(last_unified or {"countries": []}, selected_regions)
     rprint("Done.")
 
 
