@@ -719,19 +719,75 @@ Official VAT category references:
 
 | iso2 | country | category_label | rate_percent |
 | --- | --- | --- | --- |
-| CA-AB | Alberta | Standard | 5.0 |
-| CA-BC | British Columbia | Standard | 5.0 |
-| CA-MB | Manitoba | Standard | 5.0 |
-| CA-NB | New Brunswick | Standard | 15.0 |
-| CA-NL | Newfoundland and Labrador | Standard | 15.0 |
-| CA-NS | Nova Scotia | Standard | 15.0 |
-| CA-NT | Northwest Territories | Standard | 5.0 |
-| CA-NU | Nunavut | Standard | 5.0 |
-| CA-ON | Ontario | Standard | 13.0 |
-| CA-PE | Prince Edward Island | Standard | 15.0 |
-| CA-QC | Quebec | Standard | 5.0 |
-| CA-SK | Saskatchewan | Standard | 5.0 |
-| CA-YT | Yukon | Standard | 5.0 |
+| CA-AB | Alberta | Federal (GST) | 5.0 |
+| CA-AB | Alberta | Basic Groceries | 0.0 |
+| CA-AB | Alberta | Prescription Drugs | 0.0 |
+| CA-AB | Alberta | Medical Devices | 0.0 |
+| CA-AB | Alberta | Books | 0.0 |
+| CA-BC | British Columbia | Federal (GST) | 5.0 |
+| CA-BC | British Columbia | Provincial (PST) | 7.0 |
+| CA-BC | British Columbia | Basic Groceries | 0.0 |
+| CA-BC | British Columbia | Prescription Drugs | 0.0 |
+| CA-BC | British Columbia | Medical Devices | 0.0 |
+| CA-BC | British Columbia | Books | 0.0 |
+| CA-MB | Manitoba | Federal (GST) | 5.0 |
+| CA-MB | Manitoba | Provincial (PST) | 7.0 |
+| CA-MB | Manitoba | Basic Groceries | 0.0 |
+| CA-MB | Manitoba | Prescription Drugs | 0.0 |
+| CA-MB | Manitoba | Medical Devices | 0.0 |
+| CA-MB | Manitoba | Books | 0.0 |
+| CA-NB | New Brunswick | Standard (HST) | 15.0 |
+| CA-NB | New Brunswick | Basic Groceries | 0.0 |
+| CA-NB | New Brunswick | Prescription Drugs | 0.0 |
+| CA-NB | New Brunswick | Medical Devices | 0.0 |
+| CA-NB | New Brunswick | Books | 0.0 |
+| CA-NL | Newfoundland and Labrador | Standard (HST) | 15.0 |
+| CA-NL | Newfoundland and Labrador | Basic Groceries | 0.0 |
+| CA-NL | Newfoundland and Labrador | Prescription Drugs | 0.0 |
+| CA-NL | Newfoundland and Labrador | Medical Devices | 0.0 |
+| CA-NL | Newfoundland and Labrador | Books | 0.0 |
+| CA-NS | Nova Scotia | Standard (HST) | 15.0 |
+| CA-NS | Nova Scotia | Basic Groceries | 0.0 |
+| CA-NS | Nova Scotia | Prescription Drugs | 0.0 |
+| CA-NS | Nova Scotia | Medical Devices | 0.0 |
+| CA-NS | Nova Scotia | Books | 0.0 |
+| CA-NT | Northwest Territories | Federal (GST) | 5.0 |
+| CA-NT | Northwest Territories | Basic Groceries | 0.0 |
+| CA-NT | Northwest Territories | Prescription Drugs | 0.0 |
+| CA-NT | Northwest Territories | Medical Devices | 0.0 |
+| CA-NT | Northwest Territories | Books | 0.0 |
+| CA-NU | Nunavut | Federal (GST) | 5.0 |
+| CA-NU | Nunavut | Basic Groceries | 0.0 |
+| CA-NU | Nunavut | Prescription Drugs | 0.0 |
+| CA-NU | Nunavut | Medical Devices | 0.0 |
+| CA-NU | Nunavut | Books | 0.0 |
+| CA-ON | Ontario | Standard (HST) | 13.0 |
+| CA-ON | Ontario | Basic Groceries | 0.0 |
+| CA-ON | Ontario | Prescription Drugs | 0.0 |
+| CA-ON | Ontario | Medical Devices | 0.0 |
+| CA-ON | Ontario | Books | 0.0 |
+| CA-PE | Prince Edward Island | Standard (HST) | 15.0 |
+| CA-PE | Prince Edward Island | Basic Groceries | 0.0 |
+| CA-PE | Prince Edward Island | Prescription Drugs | 0.0 |
+| CA-PE | Prince Edward Island | Medical Devices | 0.0 |
+| CA-PE | Prince Edward Island | Books | 0.0 |
+| CA-QC | Quebec | Federal (GST) | 5.0 |
+| CA-QC | Quebec | Provincial (QST) | 9.975 |
+| CA-QC | Quebec | Basic Groceries | 0.0 |
+| CA-QC | Quebec | Prescription Drugs | 0.0 |
+| CA-QC | Quebec | Medical Devices | 0.0 |
+| CA-QC | Quebec | Books | 0.0 |
+| CA-SK | Saskatchewan | Federal (GST) | 5.0 |
+| CA-SK | Saskatchewan | Provincial (PST) | 6.0 |
+| CA-SK | Saskatchewan | Basic Groceries | 0.0 |
+| CA-SK | Saskatchewan | Prescription Drugs | 0.0 |
+| CA-SK | Saskatchewan | Medical Devices | 0.0 |
+| CA-SK | Saskatchewan | Books | 0.0 |
+| CA-YT | Yukon | Federal (GST) | 5.0 |
+| CA-YT | Yukon | Basic Groceries | 0.0 |
+| CA-YT | Yukon | Prescription Drugs | 0.0 |
+| CA-YT | Yukon | Medical Devices | 0.0 |
+| CA-YT | Yukon | Books | 0.0 |
 
 ### Notes
 

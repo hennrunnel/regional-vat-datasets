@@ -5,8 +5,24 @@
       "name": "Alberta",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Federal (GST)",
           "rate_percent": 5.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -15,8 +31,28 @@
       "name": "British Columbia",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Federal (GST)",
           "rate_percent": 5.0
+        },
+        {
+          "label": "Provincial (PST)",
+          "rate_percent": 7.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -25,8 +61,28 @@
       "name": "Manitoba",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Federal (GST)",
           "rate_percent": 5.0
+        },
+        {
+          "label": "Provincial (PST)",
+          "rate_percent": 7.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -35,8 +91,24 @@
       "name": "New Brunswick",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Standard (HST)",
           "rate_percent": 15.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -45,8 +117,24 @@
       "name": "Newfoundland and Labrador",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Standard (HST)",
           "rate_percent": 15.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -55,8 +143,24 @@
       "name": "Nova Scotia",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Standard (HST)",
           "rate_percent": 15.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -65,8 +169,24 @@
       "name": "Northwest Territories",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Federal (GST)",
           "rate_percent": 5.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -75,8 +195,24 @@
       "name": "Nunavut",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Federal (GST)",
           "rate_percent": 5.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -85,8 +221,24 @@
       "name": "Ontario",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Standard (HST)",
           "rate_percent": 13.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -95,8 +247,24 @@
       "name": "Prince Edward Island",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Standard (HST)",
           "rate_percent": 15.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -105,8 +273,28 @@
       "name": "Quebec",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Federal (GST)",
           "rate_percent": 5.0
+        },
+        {
+          "label": "Provincial (QST)",
+          "rate_percent": 9.975
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -115,8 +303,28 @@
       "name": "Saskatchewan",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Federal (GST)",
           "rate_percent": 5.0
+        },
+        {
+          "label": "Provincial (PST)",
+          "rate_percent": 6.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     },
@@ -125,8 +333,24 @@
       "name": "Yukon",
       "categories": [
         {
-          "label": "Standard",
+          "label": "Federal (GST)",
           "rate_percent": 5.0
+        },
+        {
+          "label": "Basic Groceries",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Prescription Drugs",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Medical Devices",
+          "rate_percent": 0.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 0.0
         }
       ]
     }
