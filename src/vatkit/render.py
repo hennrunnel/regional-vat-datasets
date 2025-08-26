@@ -20,9 +20,10 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
     # Build table header
     headers = ['iso2', 'country', 'category_label', 'rate_percent']
     lines = []
-    countries = unified.get('countries', [])
+    
     # Always use today's UTC date
     today_utc = datetime.utcnow().date().isoformat()
+    
     # Plain text header (no YAML frontmatter)
     header = [
         '# Regional VAT Datasets',
@@ -34,18 +35,78 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
         '- Sources:',
         '  - TEDB (EC UI): https://ec.europa.eu/taxation_customs/tedb/#/home',
         '  - TEDB VAT SOAP WSDL: https://ec.europa.eu/taxation_customs/tedb/ws/VatRetrievalService.wsdl',
-        f'- Coverage: EU members = {len(countries)}',
         '- Schema:',
         '  - country_fields: iso2, name',
         '  - category_fields: label, rate_percent, category_id, rate_type',
         '',
     ]
     lines.extend(header)
+    
+    # EU dataset
+    eu_countries = unified.get('countries', []) if 'eu' in selected_regions else []
+    if eu_countries:
+        lines.extend([
+            f'- Coverage: EU members = {len(eu_countries)}',
+            '',
+            '### EU Dataset (full)',
+            '',
+            '| ' + ' | '.join(headers) + ' |',
+            '| ' + ' | '.join(['---'] * len(headers)) + ' |',
+        ])
+        for c in eu_countries:
+            iso2 = c.get('iso2', '')
+            country = c.get('name', '')
+            for cat in c.get('categories', []):
+                label = str(cat.get('label', ''))
+                rate = cat.get('rate_percent')
+                rate_s = str(rate)
+                lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
+    
+    # UK section
+    if 'uk' in selected_regions:
+        lines.extend([
+            '',
+            '## UK (United Kingdom)',
+            '- Sources:',
+            '  - GOV.UK VAT rates: https://www.gov.uk/guidance/rates-of-vat-on-different-goods-and-services',
+            '- Schema:',
+            '  - country_fields: iso2, name',
+            '  - category_fields: label, rate_percent, description',
+            '',
+        ])
+        
+        # Try to load UK data if available
+        uk_data_path = Path('data/uk/parsed/latest.json')
+        if uk_data_path.exists():
+            try:
+                uk_data = json.loads(uk_data_path.read_text())
+                uk_countries = uk_data.get('countries', [])
+                if uk_countries:
+                    lines.extend([
+                        f'- Coverage: UK regions = {len(uk_countries)}',
+                        '',
+                        '### UK Dataset (full)',
+                        '',
+                        '| ' + ' | '.join(headers) + ' |',
+                        '| ' + ' | '.join(['---'] * len(headers)) + ' |',
+                    ])
+                    for c in uk_countries:
+                        iso2 = c.get('iso2', '')
+                        country = c.get('name', '')
+                        for cat in c.get('categories', []):
+                            label = str(cat.get('label', ''))
+                            rate = cat.get('rate_percent')
+                            rate_s = str(rate) if rate is not None else 'N/A'
+                            lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
+            except Exception:
+                lines.extend(['', '_UK data available but parsing failed._'])
+        else:
+            lines.extend(['', '_UK data not yet fetched._'])
+    
     # Intro with Voog blurb and CTA
     intro = [
-        'EU VAT rates and categories aggregated from the European Commission’s Taxes in Europe Database (TEDB).',
         '',
-        'This repository feeds Voog’s upcoming multi‑VAT support to help merchants stay compliant across the EU.',
+        'This repository feeds Voog\'s upcoming multi-VAT support to help merchants stay compliant across multiple regions.',
         'Voog lets you build multilingual websites and online stores that scale internationally.',
         '[Start your 30‑day free trial](https://www.voog.com).',
         '',
@@ -58,45 +119,37 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
         'PYTHONPATH=src python -m vatkit.cli',
         '```',
         '',
-        'This will fetch EU (TEDB), map categories, and update this README and `data/eu/parsed/latest.json`.',
+        'This will fetch from TEDB (EU), GOV.UK (UK), map categories, and update this README and region-specific JSON files.',
         '',
-        'Official VAT category reference:',
-        '- Annex III to the VAT Directive (eligible reduced-rate categories): https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=celex%3A32006L0112#d1e32-69-1',
-        '- TEDB documentation entry point: https://ec.europa.eu/taxation_customs/tedb/#/home',
-        '',
-        '### EU Dataset (full)',
+        'Official VAT category references:',
+        '- EU: Annex III to the VAT Directive (eligible reduced-rate categories): https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=celex%3A32006L0112#d1e32-69-1',
+        '- EU: TEDB documentation entry point: https://ec.europa.eu/taxation_customs/tedb/#/home',
+        '- UK: GOV.UK VAT rates guidance: https://www.gov.uk/guidance/rates-of-vat-on-different-goods-and-services',
         '',
     ]
     lines.extend(intro)
-    lines.append('| ' + ' | '.join(headers) + ' |')
-    lines.append('| ' + ' | '.join(['---'] * len(headers)) + ' |')
-    for c in countries:
-        iso2 = c.get('iso2', '')
-        country = c.get('name', '')
-        for cat in c.get('categories', []):
-            label = str(cat.get('label', ''))
-            rate = cat.get('rate_percent')
-            rate_s = str(rate)
-            lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
+    
     # Other regions placeholder
     region_names = {
-        'uk': 'United Kingdom',
         'ch': 'Switzerland',
         'no': 'Norway',
         'is': 'Iceland',
         'ca': 'Canada',
     }
     for r in selected_regions:
-        if r.lower() != 'eu':
+        if r.lower() not in ['eu', 'uk']:
             lines.extend(['', f"## {region_names.get(r.lower(), r.upper())}", '', '_Coming soon (adapter stubbed)._'])
+    
     # Notes
     lines.extend([
         '',
         '### Notes',
         '',
-        '- TEDB is the authoritative EC source for VAT rates.',
-        '- Latest per category is selected by situationOn.',
+        '- TEDB is the authoritative EC source for EU VAT rates.',
+        '- GOV.UK is the authoritative source for UK VAT rates.',
+        '- Latest per category is selected by situationOn (EU) or current rates (UK).',
     ])
+    
     out.write_text('\n'.join(lines) + '\n', encoding='utf-8')
     return out
 

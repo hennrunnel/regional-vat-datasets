@@ -1,0 +1,25 @@
+{
+  "countries": [
+    {
+      "iso2": "GB",
+      "name": "United Kingdom",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 20.0,
+          "description": "Most goods and services"
+        },
+        {
+          "label": "Reduced",
+          "rate_percent": 5.0,
+          "description": "Energy, heating, some construction"
+        },
+        {
+          "label": "Zero",
+          "rate_percent": 0.0,
+          "description": "Books, children's clothes, food, transport"
+        }
+      ]
+    }
+  ]
+}

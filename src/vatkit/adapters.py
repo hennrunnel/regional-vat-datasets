@@ -3,6 +3,7 @@ from rich import print as rprint
 
 from .tedb import fetch_vat_rates
 from .mapper import map_tedb_to_unified
+from .uk import fetch_uk_vat_rates, parse_uk_html
 from .render import write_json
 
 
@@ -25,8 +26,39 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
         write_json(unified, region="eu")
         return unified
 
+    if region == "uk":
+        rprint(f"[bold]Fetching[/bold] UK VAT rates from GOV.UK ...")
+        uk_data = fetch_uk_vat_rates()
+        if "error" in uk_data:
+            rprint(f"[red]UK fetch failed: {uk_data['error']}[/red]")
+            return None
+        
+        rprint("[bold]Parsing[/bold] UK HTML to unified model ...")
+        uk_rates = parse_uk_html(uk_data["html"])
+        
+        # Convert to unified format
+        unified = {
+            "countries": [{
+                "iso2": uk_rates["iso2"],
+                "name": uk_rates["country"],
+                "categories": [
+                    {
+                        "label": cat["label"],
+                        "rate_percent": cat["rate_percent"],
+                        "description": cat["description"]
+                    }
+                    for cat in uk_rates["categories"]
+                    if cat["rate_percent"] is not None  # Skip exempt/outside scope for now
+                ]
+            }]
+        }
+        
+        rprint("[bold]Writing[/bold] UK outputs ...")
+        write_json(unified, region="uk")
+        return unified
+
     # Placeholder adapters for upcoming regions
-    if region in {"uk", "ch", "no", "is", "ca"}:
+    if region in {"ch", "no", "is", "ca"}:
         rprint(f"[yellow]Region '{region.upper()}' adapter is not implemented yet. Skipping.[/yellow]")
         return None
 
