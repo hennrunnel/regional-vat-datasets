@@ -1,0 +1,30 @@
+{
+  "countries": [
+    {
+      "iso2": "NO",
+      "name": "Norway",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 25.0
+        },
+        {
+          "label": "Foodstuffs",
+          "rate_percent": 15.0
+        },
+        {
+          "label": "Passenger Transport",
+          "rate_percent": 12.0
+        },
+        {
+          "label": "Accommodation",
+          "rate_percent": 12.0
+        },
+        {
+          "label": "Cultural Events",
+          "rate_percent": 12.0
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,7 @@ from .tedb import fetch_vat_rates
 from .mapper import map_tedb_to_unified
 from .uk import fetch_uk_vat_rates, parse_uk_html
 from .ch import fetch_ch_vat_rates, parse_ch_html
+from .no import fetch_no_vat_rates, parse_no_html
 from .render import write_json
 
 
@@ -92,7 +93,28 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
         write_json(unified, region="ch")
         return unified
 
-    if region in {"no", "is", "ca"}:
+    if region == "no":
+        rprint(f"[bold]Fetching[/bold] NO VAT rates from Skatteetaten ...")
+        no_data = fetch_no_vat_rates()
+        if "error" in no_data:
+            rprint(f"[yellow]NO fetch failed, using fallback mapping: {no_data['error']}[/yellow]")
+            html = ""
+        else:
+            html = no_data["html"]
+        rprint("[bold]Parsing[/bold] NO HTML to unified model ...")
+        no_rates = parse_no_html(html)
+        unified = {
+            "countries": [{
+                "iso2": no_rates["iso2"],
+                "name": no_rates["country"],
+                "categories": no_rates["categories"],
+            }]
+        }
+        rprint("[bold]Writing[/bold] NO outputs ...")
+        write_json(unified, region="no")
+        return unified
+
+    if region in {"is", "ca"}:
         rprint(f"[yellow]Region '{region.upper()}' adapter is not implemented yet. Skipping.[/yellow]")
         return None
 

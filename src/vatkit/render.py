@@ -34,8 +34,13 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
     ]
     lines.extend(header)
     
-    # EU section - always load from file if EU is selected
-    if 'eu' in selected_regions:
+    # Build final region set: always include EU and UK if data files exist
+    regions_to_render = set([r.lower() for r in selected_regions])
+    for fixed in ['eu', 'uk']:
+        regions_to_render.add(fixed)
+
+    # EU section - always try to load from file
+    if 'eu' in regions_to_render:
         lines.extend([
             '## EU (European Union)',
             '- Sources:',
@@ -75,8 +80,8 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
         else:
             lines.extend(['', '_EU data not yet fetched._'])
     
-    # UK section
-    if 'uk' in selected_regions:
+    # UK section - always try to load from file
+    if 'uk' in regions_to_render:
         lines.extend([
             '',
             '## UK (United Kingdom)',
@@ -142,19 +147,21 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
     ]
     lines.extend(intro)
     
-    # Other regions placeholder
+    # Other regions
     region_names = {
         'ch': 'Switzerland',
         'no': 'Norway',
         'is': 'Iceland',
         'ca': 'Canada',
     }
-    for r in selected_regions:
+    for r in sorted(regions_to_render):
         if r.lower() not in ['eu', 'uk']:
             pretty = region_names.get(r.lower(), r.upper())
             lines.extend(['', f"## {pretty}", '- Sources:'])
             if r.lower() == 'ch':
                 lines.append('  - Swiss FTA VAT rates: https://www.estv.admin.ch/estv/en/home/value-added-tax/vat-rates.html')
+            if r.lower() == 'no':
+                lines.append('  - Skatteetaten VAT rates: https://www.skatteetaten.no/en/business-and-organisation/vat/rates-and-registration/vat-rates/')
             lines.extend(['- Schema:', '  - country_fields: iso2, name', '  - category_fields: label, rate_percent', ''])
             data_path = Path(f'data/{r.lower()}/parsed/latest.json')
             if data_path.exists():

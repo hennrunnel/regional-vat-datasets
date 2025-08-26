@@ -9,11 +9,23 @@
           "rate_percent": 8.1
         },
         {
-          "label": "Reduced",
+          "label": "Foodstuffs",
           "rate_percent": 2.6
         },
         {
-          "label": "Special (Accommodation)",
+          "label": "Books",
+          "rate_percent": 2.6
+        },
+        {
+          "label": "Pharmaceutical Products",
+          "rate_percent": 2.6
+        },
+        {
+          "label": "Broadcasting Services",
+          "rate_percent": 2.6
+        },
+        {
+          "label": "Accommodation",
           "rate_percent": 3.8
         }
       ]

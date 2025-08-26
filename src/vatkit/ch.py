@@ -78,9 +78,15 @@ def parse_ch_html(html_content: str) -> Dict[str, Any]:
     if standard is not None:
         categories.append({"label": "Standard", "rate_percent": standard})
     if reduced is not None:
-        categories.append({"label": "Reduced", "rate_percent": reduced})
+        # EU-style: break out common reduced classes
+        categories.extend([
+            {"label": "Foodstuffs", "rate_percent": reduced},
+            {"label": "Books", "rate_percent": reduced},
+            {"label": "Pharmaceutical Products", "rate_percent": reduced},
+            {"label": "Broadcasting Services", "rate_percent": reduced},
+        ])
     if special is not None:
-        categories.append({"label": "Special (Accommodation)", "rate_percent": special})
+        categories.append({"label": "Accommodation", "rate_percent": special})
 
     return {
         "country": "Switzerland",
