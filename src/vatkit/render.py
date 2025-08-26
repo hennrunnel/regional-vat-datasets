@@ -31,36 +31,49 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
         f'- Retrieved at: {today_utc} (UTC)',
         "- Context: Public datasets that feed Voog's upcoming multi‑VAT support. Each region keeps its own sources and category semantics.",
         '',
-        '## EU (European Union)',
-        '- Sources:',
-        '  - TEDB (EC UI): https://ec.europa.eu/taxation_customs/tedb/#/home',
-        '  - TEDB VAT SOAP WSDL: https://ec.europa.eu/taxation_customs/tedb/ws/VatRetrievalService.wsdl',
-        '- Schema:',
-        '  - country_fields: iso2, name',
-        '  - category_fields: label, rate_percent, category_id, rate_type',
-        '',
     ]
     lines.extend(header)
     
-    # EU dataset
-    eu_countries = unified.get('countries', []) if 'eu' in selected_regions else []
-    if eu_countries:
+    # EU section - always load from file if EU is selected
+    if 'eu' in selected_regions:
         lines.extend([
-            f'- Coverage: EU members = {len(eu_countries)}',
+            '## EU (European Union)',
+            '- Sources:',
+            '  - TEDB (EC UI): https://ec.europa.eu/taxation_customs/tedb/#/home',
+            '  - TEDB VAT SOAP WSDL: https://ec.europa.eu/taxation_customs/tedb/ws/VatRetrievalService.wsdl',
+            '- Schema:',
+            '  - country_fields: iso2, name',
+            '  - category_fields: label, rate_percent, category_id, rate_type',
             '',
-            '### EU Dataset (full)',
-            '',
-            '| ' + ' | '.join(headers) + ' |',
-            '| ' + ' | '.join(['---'] * len(headers)) + ' |',
         ])
-        for c in eu_countries:
-            iso2 = c.get('iso2', '')
-            country = c.get('name', '')
-            for cat in c.get('categories', []):
-                label = str(cat.get('label', ''))
-                rate = cat.get('rate_percent')
-                rate_s = str(rate)
-                lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
+        
+        # Load EU data from file
+        eu_data_path = Path('data/eu/parsed/latest.json')
+        if eu_data_path.exists():
+            try:
+                eu_data = json.loads(eu_data_path.read_text())
+                eu_countries = eu_data.get('countries', [])
+                if eu_countries:
+                    lines.extend([
+                        f'- Coverage: EU members = {len(eu_countries)}',
+                        '',
+                        '### EU Dataset (full)',
+                        '',
+                        '| ' + ' | '.join(headers) + ' |',
+                        '| ' + ' | '.join(['---'] * len(headers)) + ' |',
+                    ])
+                    for c in eu_countries:
+                        iso2 = c.get('iso2', '')
+                        country = c.get('name', '')
+                        for cat in c.get('categories', []):
+                            label = str(cat.get('label', ''))
+                            rate = cat.get('rate_percent')
+                            rate_s = str(rate)
+                            lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
+            except Exception as e:
+                lines.extend(['', f'_EU data available but parsing failed: {e}_'])
+        else:
+            lines.extend(['', '_EU data not yet fetched._'])
     
     # UK section
     if 'uk' in selected_regions:
@@ -71,11 +84,11 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
             '  - GOV.UK VAT rates: https://www.gov.uk/guidance/rates-of-vat-on-different-goods-and-services',
             '- Schema:',
             '  - country_fields: iso2, name',
-            '  - category_fields: label, rate_percent, description',
+            '  - category_fields: label, rate_percent, description, eu_equivalent',
             '',
         ])
         
-        # Try to load UK data if available
+        # Load UK data from file
         uk_data_path = Path('data/uk/parsed/latest.json')
         if uk_data_path.exists():
             try:
@@ -98,8 +111,8 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
                             rate = cat.get('rate_percent')
                             rate_s = str(rate) if rate is not None else 'N/A'
                             lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
-            except Exception:
-                lines.extend(['', '_UK data available but parsing failed._'])
+            except Exception as e:
+                lines.extend(['', f'_UK data available but parsing failed: {e}_'])
         else:
             lines.extend(['', '_UK data not yet fetched._'])
     
@@ -148,6 +161,7 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
         '- TEDB is the authoritative EC source for EU VAT rates.',
         '- GOV.UK is the authoritative source for UK VAT rates.',
         '- Latest per category is selected by situationOn (EU) or current rates (UK).',
+        '- UK categories are mapped to EU equivalents where possible for consistency.',
     ])
     
     out.write_text('\n'.join(lines) + '\n', encoding='utf-8')

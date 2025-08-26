@@ -10,14 +10,74 @@
           "description": "Most goods and services"
         },
         {
-          "label": "Reduced",
+          "label": "Energy & Heating",
           "rate_percent": 5.0,
-          "description": "Energy, heating, some construction"
+          "description": "Domestic electricity, gas, heating oil, solid fuel"
         },
         {
-          "label": "Zero",
+          "label": "Construction",
+          "rate_percent": 5.0,
+          "description": "Renovation of empty dwellings, conversion work"
+        },
+        {
+          "label": "Heating Equipment",
+          "rate_percent": 5.0,
+          "description": "Boilers, radiators, heating controls"
+        },
+        {
+          "label": "Children's Car Seats",
+          "rate_percent": 5.0,
+          "description": "Child car seats and booster cushions"
+        },
+        {
+          "label": "Sanitary Products",
+          "rate_percent": 5.0,
+          "description": "Women's sanitary protection products"
+        },
+        {
+          "label": "Books & Publications",
           "rate_percent": 0.0,
-          "description": "Books, children's clothes, food, transport"
+          "description": "Books, newspapers, magazines, maps"
+        },
+        {
+          "label": "Children's Clothing",
+          "rate_percent": 0.0,
+          "description": "Children's clothes and footwear under 14"
+        },
+        {
+          "label": "Food & Drink",
+          "rate_percent": 0.0,
+          "description": "Most food and non-alcoholic drinks"
+        },
+        {
+          "label": "Transport",
+          "rate_percent": 0.0,
+          "description": "Public passenger transport, aircraft, ships"
+        },
+        {
+          "label": "Medical & Care",
+          "rate_percent": 0.0,
+          "description": "Medical care, pharmaceutical products"
+        },
+        {
+          "label": "Energy Saving",
+          "rate_percent": 0.0,
+          "description": "Solar panels, insulation, heat pumps"
+        },
+        {
+          "label": "Construction Zero",
+          "rate_percent": 0.0,
+          "description": "New dwellings, substantial reconstruction"
+        },
+        {
+          "label": "Protective Equipment",
+          "rate_percent": 0.0,
+          "description": "Cycle helmets, motorcycle helmets"
+        },
+        {
+          "label": "Cultural Items",
+          "rate_percent": 0.0,
+          "description": "Tapestries, pictures, sculptures over 100 years"
         }
       ]
     }
