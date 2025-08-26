@@ -668,21 +668,92 @@
 
 | iso2 | country | category_label | rate_percent |
 | --- | --- | --- | --- |
-| GB | United Kingdom | Standard | 20.0 |
-| GB | United Kingdom | Energy & Heating | 5.0 |
-| GB | United Kingdom | Construction | 5.0 |
-| GB | United Kingdom | Heating Equipment | 5.0 |
-| GB | United Kingdom | Children's Car Seats | 5.0 |
-| GB | United Kingdom | Sanitary Products | 5.0 |
-| GB | United Kingdom | Books & Publications | 0.0 |
-| GB | United Kingdom | Children's Clothing | 0.0 |
-| GB | United Kingdom | Food & Drink | 0.0 |
-| GB | United Kingdom | Transport | 0.0 |
-| GB | United Kingdom | Medical & Care | 0.0 |
-| GB | United Kingdom | Energy Saving | 0.0 |
-| GB | United Kingdom | Construction Zero | 0.0 |
-| GB | United Kingdom | Protective Equipment | 0.0 |
-| GB | United Kingdom | Cultural Items | 0.0 |
+| GB | United Kingdom | Standard Rate (Default) | 20.0 |
+| GB | United Kingdom | Advertising services for charities | 0.0 |
+| GB | United Kingdom | Certain goods sold at charitable fundraising events | 0.0 |
+| GB | United Kingdom | Charity shops — selling donated goods | 0.0 |
+| GB | United Kingdom | Construction and sale of new buildings for a relevant charitable purpose | 0.0 |
+| GB | United Kingdom | Energy-saving materials permanently installed in dwellings and buildings used for a relevant resi... | 5.0 |
+| GB | United Kingdom | Building services for disabled people | 0.0 |
+| GB | United Kingdom | Mobility aids for the elderly | 5.0 |
+| GB | United Kingdom | Equipment for blind or partially sighted people | 0.0 |
+| GB | United Kingdom | Equipment for disabled people | 0.0 |
+| GB | United Kingdom | Smoking cessation products — nicotine patches and gum | 5.0 |
+| GB | United Kingdom | Magnetic tape adapted for recording speech for blind people together with apparatus for making an... | 0.0 |
+| GB | United Kingdom | Dispensing of prescriptions by a registered pharmacist | 0.0 |
+| GB | United Kingdom | Incontinence products | 0.0 |
+| GB | United Kingdom | Maternity pads | 0.0 |
+| GB | United Kingdom | Sanitary protection products | 0.0 |
+| GB | United Kingdom | Low vision aids | 0.0 |
+| GB | United Kingdom | Electricity for domestic and residential use or for non-business use by a charity | 5.0 |
+| GB | United Kingdom | Gas for domestic and residential use or for non-business use by a charity | 5.0 |
+| GB | United Kingdom | Heating oil for domestic and residential use or for non-business use by a charity | 5.0 |
+| GB | United Kingdom | Solid fuel for domestic and residential use or for non-business use by a charity | 5.0 |
+| GB | United Kingdom | Cesspools, septic tanks or similar (domestic) — emptying | 0.0 |
+| GB | United Kingdom | Sewerage services supplied to domestic or industrial customers | 0.0 |
+| GB | United Kingdom | Water supplied to households | 0.0 |
+| GB | United Kingdom | Air source heat pumps | 0.0 |
+| GB | United Kingdom | Boilers — wood fuelled | 0.0 |
+| GB | United Kingdom | Central heating and hot water controls | 0.0 |
+| GB | United Kingdom | Draught stripping | 0.0 |
+| GB | United Kingdom | Ground source heat pumps | 0.0 |
+| GB | United Kingdom | Insulation | 0.0 |
+| GB | United Kingdom | Micro combined heat and power units | 0.0 |
+| GB | United Kingdom | Solar panels | 0.0 |
+| GB | United Kingdom | Water and wind turbines | 0.0 |
+| GB | United Kingdom | Closed solid fuel fire cassettes | 5.0 |
+| GB | United Kingdom | Electric dual immersion water heaters with factory-insulated hot water tanks | 5.0 |
+| GB | United Kingdom | Electric storage heaters | 5.0 |
+| GB | United Kingdom | Gas-fired boilers | 5.0 |
+| GB | United Kingdom | Gas room heaters with thermostatic controls | 5.0 |
+| GB | United Kingdom | Oil-fired boilers | 5.0 |
+| GB | United Kingdom | Radiators | 5.0 |
+| GB | United Kingdom | The installation, repair and maintenance of a boiler, radiators, pipework and controls forming a ... | 5.0 |
+| GB | United Kingdom | The installation, repair and maintenance of renewable source heating systems. This means space or... | 5.0 |
+| GB | United Kingdom | Connection or reconnection to the mains gas supply | 5.0 |
+| GB | United Kingdom | Substantial reconstructions to protected buildings that are buildings used as a dwelling, for a r... | 0.0 |
+| GB | United Kingdom | The installation of a bathroom or lavatory, constructing ramps and widening doorways or passagewa... | 0.0 |
+| GB | United Kingdom | Construction and first freehold or long leasehold sale of a new building for a relevant charitabl... | 0.0 |
+| GB | United Kingdom | Construction and first freehold or long leasehold sale of a new building for relevant residential... | 0.0 |
+| GB | United Kingdom | Construction and first freehold or long leasehold sale of new domestic buildings | 0.0 |
+| GB | United Kingdom | Converting existing premises by increasing the number of dwellings within the building | 5.0 |
+| GB | United Kingdom | Renovating a dwelling that has been empty for at least 2 years | 5.0 |
+| GB | United Kingdom | First freehold or long leasehold sale of a commercial building converted into a dwelling or dwell... | 0.0 |
+| GB | United Kingdom | First freehold or long leasehold sale of buildings converted for relevant residential purposes | 0.0 |
+| GB | United Kingdom | First freehold or long leasehold sale of buildings converted for relevant charitable purposes | 0.0 |
+| GB | United Kingdom | Sale or long lease of a new dwelling with garage or parking space | 0.0 |
+| GB | United Kingdom | Aircraft repair and maintenance | 0.0 |
+| GB | United Kingdom | Freight transport to or from a place outside the UK | 0.0 |
+| GB | United Kingdom | Freight containers — sale, lease or hire to a place outside the UK and the EU | 0.0 |
+| GB | United Kingdom | International freight transport that takes place in the UK and its territorial waters | 0.0 |
+| GB | United Kingdom | Passenger transport in a vehicle, boat or aircraft that carries not less than 10 passengers | 0.0 |
+| GB | United Kingdom | Aircraft repair and maintenance | 0.0 |
+| GB | United Kingdom | Airships — sale or charter | 0.0 |
+| GB | United Kingdom | Caravans (more than 7 metres long or more than 2.55 metres wide) | 0.0 |
+| GB | United Kingdom | Civil aeroplanes — sale or charter | 0.0 |
+| GB | United Kingdom | Helicopters — sale or charter | 0.0 |
+| GB | United Kingdom | Houseboats — sale or let out on hire | 0.0 |
+| GB | United Kingdom | Military aeroplanes — sale or charter | 0.0 |
+| GB | United Kingdom | Ship repairs and maintenance | 0.0 |
+| GB | United Kingdom | Shipbuilding — 15 tons or over gross tonnage | 0.0 |
+| GB | United Kingdom | Brochures | 0.0 |
+| GB | United Kingdom | Leaflets | 0.0 |
+| GB | United Kingdom | Pamphlets | 0.0 |
+| GB | United Kingdom | Books | 0.0 |
+| GB | United Kingdom | Children’s painting and picture books | 0.0 |
+| GB | United Kingdom | Maps and charts | 0.0 |
+| GB | United Kingdom | Magazines | 0.0 |
+| GB | United Kingdom | Newspapers | 0.0 |
+| GB | United Kingdom | Printed or copied music | 0.0 |
+| GB | United Kingdom | Publications | 0.0 |
+| GB | United Kingdom | Babywear | 0.0 |
+| GB | United Kingdom | Children’s clothes and footwear | 0.0 |
+| GB | United Kingdom | Carrycots with restraint straps | 5.0 |
+| GB | United Kingdom | Children’s car seats, booster seats and booster cushions | 5.0 |
+| GB | United Kingdom | Children’s safety seats with bare wheeled framework | 5.0 |
+| GB | United Kingdom | Cycle helmets — CE marked | 0.0 |
+| GB | United Kingdom | Motorcycle helmets that meet safety standards | 0.0 |
+| GB | United Kingdom | Protective boots and helmets for industrial use | 0.0 |
 
 This repository feeds Voog's upcoming multi-VAT support to help merchants stay compliant across multiple regions.
 Voog lets you build multilingual websites and online stores that scale internationally.

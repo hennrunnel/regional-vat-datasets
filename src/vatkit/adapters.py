@@ -45,7 +45,9 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
                     {
                         "label": cat["label"],
                         "rate_percent": cat["rate_percent"],
-                        "description": cat["description"]
+                        "rate_type": cat["rate_type"],
+                        "reference": cat.get("reference", ""),
+                        "table_source": cat.get("table_source", "")
                     }
                     for cat in uk_rates["categories"]
                     if cat["rate_percent"] is not None  # Skip exempt/outside scope for now

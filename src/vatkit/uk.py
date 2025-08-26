@@ -18,44 +18,97 @@ def fetch_uk_vat_rates() -> Dict[str, Any]:
 
 
 def parse_uk_html(html_content: str) -> Dict[str, Any]:
-    """Parse UK VAT rates from GOV.UK HTML with detailed categories mapped to EU equivalents."""
+    """Parse ALL UK VAT rates from GOV.UK HTML - comprehensive extraction from all tables."""
     soup = BeautifulSoup(html_content, 'html.parser')
     
-    # UK has 3 main VAT rates: Standard (20%), Reduced (5%), Zero (0%)
-    # Plus various exemptions and special cases
+    # Find all tables
+    tables = soup.find_all('table')
+    rprint(f"[blue]Found {len(tables)} tables on GOV.UK[/blue]")
+    
+    all_categories = []
+    
+    # UK VAT works by EXCEPTION - everything not listed is Standard rate (20%)
+    # Add Standard rate as the first category
+    all_categories.append({
+        "label": "Standard Rate (Default)",
+        "rate_percent": 20.0,
+        "rate_type": "Standard",
+        "reference": "Default UK VAT rate",
+        "table_source": "UK VAT System",
+        "description": "All goods and services not specifically listed below"
+    })
+    
+    for table_idx, table in enumerate(tables):
+        rows = table.find_all('tr')
+        if len(rows) < 2:  # Skip tables with just headers
+            continue
+            
+        # Skip header row, process data rows
+        for row in rows[1:]:
+            cells = row.find_all(['td', 'th'])
+            if len(cells) >= 2:
+                category_name = cells[0].get_text(strip=True)
+                rate_text = cells[1].get_text(strip=True)
+                
+                # Parse rate
+                rate_percent = None
+                rate_type = "Unknown"
+                
+                if "0%" in rate_text:
+                    rate_percent = 0.0
+                    rate_type = "Zero"
+                elif "5%" in rate_text:
+                    rate_percent = 5.0
+                    rate_type = "Reduced"
+                elif "20%" in rate_text:
+                    rate_percent = 20.0
+                    rate_type = "Standard"
+                elif "Exempt" in rate_text:
+                    rate_type = "Exempt"
+                elif "Outside the scope" in rate_text:
+                    rate_type = "Outside Scope"
+                elif "The same rate as" in rate_text:
+                    rate_type = "Variable"
+                
+                # Clean up category name
+                category_name = category_name.replace('\n', ' ').strip()
+                if len(category_name) > 100:  # Truncate very long names
+                    category_name = category_name[:97] + "..."
+                
+                # Get reference info if available
+                reference = ""
+                if len(cells) >= 3:
+                    ref_cell = cells[2].get_text(strip=True)
+                    if "VAT Notice" in ref_cell:
+                        reference = ref_cell
+                
+                category = {
+                    "label": category_name,
+                    "rate_percent": rate_percent,
+                    "rate_type": rate_type,
+                    "reference": reference,
+                    "table_source": f"Table {table_idx + 1}"
+                }
+                
+                all_categories.append(category)
+    
+    rprint(f"[blue]Extracted {len(all_categories)} VAT categories from GOV.UK (including Standard rate default)[/blue]")
+    
+    # Group by rate type for summary
+    rate_summary = {}
+    for cat in all_categories:
+        rate_type = cat["rate_type"]
+        if rate_type not in rate_summary:
+            rate_summary[rate_type] = []
+        rate_summary[rate_type].append(cat["label"])
     
     uk_rates = {
         "country": "United Kingdom",
         "iso2": "GB",
-        "standard_rate": 20.0,
-        "reduced_rate": 5.0,
-        "zero_rate": 0.0,
-        "categories": [
-            # Standard rate categories (20%)
-            {"label": "Standard", "rate_percent": 20.0, "description": "Most goods and services", "eu_equivalent": "Standard"},
-            
-            # Reduced rate categories (5%)
-            {"label": "Energy & Heating", "rate_percent": 5.0, "description": "Domestic electricity, gas, heating oil, solid fuel", "eu_equivalent": "Supply Electricity"},
-            {"label": "Construction", "rate_percent": 5.0, "description": "Renovation of empty dwellings, conversion work", "eu_equivalent": "Housing Provision"},
-            {"label": "Heating Equipment", "rate_percent": 5.0, "description": "Boilers, radiators, heating controls", "eu_equivalent": "Supply Heating"},
-            {"label": "Children's Car Seats", "rate_percent": 5.0, "description": "Child car seats and booster cushions", "eu_equivalent": "Children Car Seats"},
-            {"label": "Sanitary Products", "rate_percent": 5.0, "description": "Women's sanitary protection products", "eu_equivalent": "Pharmaceutical Products"},
-            
-            # Zero rate categories (0%)
-            {"label": "Books & Publications", "rate_percent": 0.0, "description": "Books, newspapers, magazines, maps", "eu_equivalent": "Books"},
-            {"label": "Children's Clothing", "rate_percent": 0.0, "description": "Children's clothes and footwear under 14", "eu_equivalent": "Clothing Repair"},
-            {"label": "Food & Drink", "rate_percent": 0.0, "description": "Most food and non-alcoholic drinks", "eu_equivalent": "Foodstuffs"},
-            {"label": "Transport", "rate_percent": 0.0, "description": "Public passenger transport, aircraft, ships", "eu_equivalent": "Transport Passengers"},
-            {"label": "Medical & Care", "rate_percent": 0.0, "description": "Medical care, pharmaceutical products", "eu_equivalent": "Medical Care"},
-            {"label": "Energy Saving", "rate_percent": 0.0, "description": "Solar panels, insulation, heat pumps", "eu_equivalent": "Solar Panels"},
-            {"label": "Construction Zero", "rate_percent": 0.0, "description": "New dwellings, substantial reconstruction", "eu_equivalent": "Housing Provision"},
-            {"label": "Protective Equipment", "rate_percent": 0.0, "description": "Cycle helmets, motorcycle helmets", "eu_equivalent": "Medical Equipment"},
-            {"label": "Cultural Items", "rate_percent": 0.0, "description": "Tapestries, pictures, sculptures over 100 years", "eu_equivalent": "100 Years Old"},
-            
-            # Special categories
-            {"label": "Exempt", "rate_percent": None, "description": "Financial services, insurance, property", "eu_equivalent": "Social Wellbeing"},
-            {"label": "Outside Scope", "rate_percent": None, "description": "Tolls, some postal services", "eu_equivalent": "Postage"}
-        ]
+        "total_categories": len(all_categories),
+        "rate_summary": rate_summary,
+        "categories": all_categories,
+        "note": "UK VAT works by exception - Standard rate (20%) applies to all goods/services not specifically listed below"
     }
     
     return uk_rates
