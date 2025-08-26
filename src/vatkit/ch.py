@@ -34,6 +34,7 @@ def parse_ch_html(html_content: str) -> Dict[str, Any]:
     standard = None
     reduced = None
     special = None
+    fallback_used = False
 
     # Collect all percentage values seen
     candidates = []
@@ -70,9 +71,15 @@ def parse_ch_html(html_content: str) -> Dict[str, Any]:
             pass
 
     # Fallback to current official rates (2024+) if not found
-    if standard is None: standard = 8.1
-    if reduced is None: reduced = 2.6
-    if special is None: special = 3.8
+    if standard is None:
+        standard = 8.1
+        fallback_used = True
+    if reduced is None:
+        reduced = 2.6
+        fallback_used = True
+    if special is None:
+        special = 3.8
+        fallback_used = True
 
     categories: List[Dict[str, Any]] = []
     if standard is not None:
@@ -92,4 +99,5 @@ def parse_ch_html(html_content: str) -> Dict[str, Any]:
         "country": "Switzerland",
         "iso2": "CH",
         "categories": categories,
+        "metadata": {"fallback_used": fallback_used},
     }

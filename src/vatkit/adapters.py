@@ -99,9 +99,11 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
     if region == "no":
         rprint(f"[bold]Fetching[/bold] NO VAT rates from Skatteetaten ...")
         no_data = fetch_no_vat_rates()
+        fallback_used = False
         if "error" in no_data:
             rprint(f"[yellow]NO fetch failed, using fallback mapping: {no_data['error']}[/yellow]")
             html = ""
+            fallback_used = True
         else:
             html = no_data["html"]
         rprint("[bold]Parsing[/bold] NO HTML to unified model ...")
@@ -111,7 +113,8 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
                 "iso2": no_rates["iso2"],
                 "name": no_rates["country"],
                 "categories": no_rates["categories"],
-            }]
+            }],
+            "metadata": {"fallback_used": fallback_used, "source": "Skatteetaten"},
         }
         rprint("[bold]Writing[/bold] NO outputs ...")
         write_json(unified, region="no")
@@ -120,9 +123,11 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
     if region == "is":
         rprint(f"[bold]Fetching[/bold] IS VAT rates from RSK ...")
         is_data = fetch_is_vat_rates()
+        fallback_used = False
         if "error" in is_data:
             rprint(f"[yellow]IS fetch failed, using fallback mapping: {is_data['error']}[/yellow]")
             html = ""
+            fallback_used = True
         else:
             html = is_data["html"]
         rprint("[bold]Parsing[/bold] IS HTML to unified model ...")
@@ -132,7 +137,8 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
                 "iso2": is_rates["iso2"],
                 "name": is_rates["country"],
                 "categories": is_rates["categories"],
-            }]
+            }],
+            "metadata": {"fallback_used": fallback_used, "source": "RSK"},
         }
         rprint("[bold]Writing[/bold] IS outputs ...")
         write_json(unified, region="is")
