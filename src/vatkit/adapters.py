@@ -6,6 +6,8 @@ from .mapper import map_tedb_to_unified
 from .uk import fetch_uk_vat_rates, parse_uk_html
 from .ch import fetch_ch_vat_rates, parse_ch_html
 from .no import fetch_no_vat_rates, parse_no_html
+from .iceland import fetch_is_vat_rates, parse_is_html
+from .li import fetch_li_vat_rates, parse_li_html
 from .render import write_json
 
 
@@ -114,7 +116,45 @@ def run_region(region: str, *, date_from: str, date_to: str, states: Optional[Li
         write_json(unified, region="no")
         return unified
 
-    if region in {"is", "ca"}:
+    if region == "is":
+        rprint(f"[bold]Fetching[/bold] IS VAT rates from RSK ...")
+        is_data = fetch_is_vat_rates()
+        if "error" in is_data:
+            rprint(f"[yellow]IS fetch failed, using fallback mapping: {is_data['error']}[/yellow]")
+            html = ""
+        else:
+            html = is_data["html"]
+        rprint("[bold]Parsing[/bold] IS HTML to unified model ...")
+        is_rates = parse_is_html(html)
+        unified = {
+            "countries": [{
+                "iso2": is_rates["iso2"],
+                "name": is_rates["country"],
+                "categories": is_rates["categories"],
+            }]
+        }
+        rprint("[bold]Writing[/bold] IS outputs ...")
+        write_json(unified, region="is")
+        return unified
+
+    if region == "li":
+        rprint(f"[bold]Fetching[/bold] LI VAT rates (mirror CH) ...")
+        li_data = fetch_li_vat_rates()
+        html = li_data.get("html", "")
+        rprint("[bold]Parsing[/bold] LI (from CH) to unified model ...")
+        li_rates = parse_li_html(html)
+        unified = {
+            "countries": [{
+                "iso2": li_rates["iso2"],
+                "name": li_rates["country"],
+                "categories": li_rates["categories"],
+            }]
+        }
+        rprint("[bold]Writing[/bold] LI outputs ...")
+        write_json(unified, region="li")
+        return unified
+
+    if region in {"ca"}:
         rprint(f"[yellow]Region '{region.upper()}' adapter is not implemented yet. Skipping.[/yellow]")
         return None
 

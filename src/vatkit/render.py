@@ -162,6 +162,10 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
                 lines.append('  - Swiss FTA VAT rates: https://www.estv.admin.ch/estv/en/home/value-added-tax/vat-rates.html')
             if r.lower() == 'no':
                 lines.append('  - Skatteetaten VAT rates: https://www.skatteetaten.no/en/business-and-organisation/vat/rates-and-registration/vat-rates/')
+            if r.lower() == 'is':
+                lines.append('  - RSK VAT rates: https://www.rsk.is/english/companies/value-added-tax/vat-rates/')
+            if r.lower() == 'li':
+                lines.append('  - Mirrors Switzerland VAT rates (CH)')
             lines.extend(['- Schema:', '  - country_fields: iso2, name', '  - category_fields: label, rate_percent', ''])
             data_path = Path(f'data/{r.lower()}/parsed/latest.json')
             if data_path.exists():

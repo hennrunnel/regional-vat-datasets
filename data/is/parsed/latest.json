@@ -1,0 +1,26 @@
+{
+  "countries": [
+    {
+      "iso2": "IS",
+      "name": "Iceland",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 24.0
+        },
+        {
+          "label": "Foodstuffs",
+          "rate_percent": 11.0
+        },
+        {
+          "label": "Books",
+          "rate_percent": 11.0
+        },
+        {
+          "label": "Accommodation",
+          "rate_percent": 11.0
+        }
+      ]
+    }
+  ]
+}

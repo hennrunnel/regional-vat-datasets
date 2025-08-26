@@ -708,22 +708,39 @@ Official VAT category references:
 - UK: GOV.UK VAT rates guidance: https://www.gov.uk/guidance/rates-of-vat-on-different-goods-and-services
 
 
-## Norway
+## Iceland
 - Sources:
-  - Skatteetaten VAT rates: https://www.skatteetaten.no/en/business-and-organisation/vat/rates-and-registration/vat-rates/
+  - RSK VAT rates: https://www.rsk.is/english/companies/value-added-tax/vat-rates/
 - Schema:
   - country_fields: iso2, name
   - category_fields: label, rate_percent
 
-### Norway Dataset (full)
+### Iceland Dataset (full)
 
 | iso2 | country | category_label | rate_percent |
 | --- | --- | --- | --- |
-| NO | Norway | Standard | 25.0 |
-| NO | Norway | Foodstuffs | 15.0 |
-| NO | Norway | Passenger Transport | 12.0 |
-| NO | Norway | Accommodation | 12.0 |
-| NO | Norway | Cultural Events | 12.0 |
+| IS | Iceland | Standard | 24.0 |
+| IS | Iceland | Foodstuffs | 11.0 |
+| IS | Iceland | Books | 11.0 |
+| IS | Iceland | Accommodation | 11.0 |
+
+## LI
+- Sources:
+  - Mirrors Switzerland VAT rates (CH)
+- Schema:
+  - country_fields: iso2, name
+  - category_fields: label, rate_percent
+
+### LI Dataset (full)
+
+| iso2 | country | category_label | rate_percent |
+| --- | --- | --- | --- |
+| LI | Liechtenstein | Standard | 8.1 |
+| LI | Liechtenstein | Foodstuffs | 2.6 |
+| LI | Liechtenstein | Books | 2.6 |
+| LI | Liechtenstein | Pharmaceutical Products | 2.6 |
+| LI | Liechtenstein | Broadcasting Services | 2.6 |
+| LI | Liechtenstein | Accommodation | 3.8 |
 
 ### Notes
 

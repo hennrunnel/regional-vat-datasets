@@ -1,0 +1,34 @@
+{
+  "countries": [
+    {
+      "iso2": "LI",
+      "name": "Liechtenstein",
+      "categories": [
+        {
+          "label": "Standard",
+          "rate_percent": 8.1
+        },
+        {
+          "label": "Foodstuffs",
+          "rate_percent": 2.6
+        },
+        {
+          "label": "Books",
+          "rate_percent": 2.6
+        },
+        {
+          "label": "Pharmaceutical Products",
+          "rate_percent": 2.6
+        },
+        {
+          "label": "Broadcasting Services",
+          "rate_percent": 2.6
+        },
+        {
+          "label": "Accommodation",
+          "rate_percent": 3.8
+        }
+      ]
+    }
+  ]
+}
