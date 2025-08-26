@@ -159,7 +159,7 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
             pretty = region_names.get(r.lower(), r.upper())
             lines.extend(['', f"## {pretty}", '- Sources:'])
             if r.lower() == 'ch':
-                lines.append('  - Swiss FTA VAT rates: https://www.estv.admin.ch/estv/en/home/value-added-tax/vat-rates.html')
+                lines.append('  - Swiss FTA VAT rates: https://www.estv.admin.ch/estv/en/home/mehrwertsteuer/mwst-steuersaetze.html')
             if r.lower() == 'no':
                 lines.append('  - Skatteetaten VAT rates: https://www.skatteetaten.no/en/business-and-organisation/vat/rates-and-registration/vat-rates/')
             if r.lower() == 'is':
@@ -184,6 +184,22 @@ def write_markdown(unified: Dict[str, Any], selected_regions: List[str]) -> Path
                                 rate = cat.get('rate_percent')
                                 rate_s = str(rate)
                                 lines.append(f"| {iso2} | {country} | {label} | {rate_s} |")
+                        # Region-specific citations
+                        if r.lower() == 'ch':
+                            lines.extend([
+                                '',
+                                'References (CH):',
+                                '- FTA VAT rates: https://www.estv.admin.ch/estv/en/home/mehrwertsteuer/mwst-steuersaetze.html',
+                            ])
+                        if r.lower() == 'ca':
+                            lines.extend([
+                                '',
+                                'References (CA federal zero-rated):',
+                                '- Basic groceries: https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-001/basic-groceries.html',
+                                '- Prescription drugs: https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-063/prescription-drugs.html',
+                                '- Medical devices: https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-067/medical-devices.html',
+                                '- Books: https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/gi-065/books.html',
+                            ])
                 except Exception:
                     lines.extend(['', f'_{pretty} data available but parsing failed._'])
             else:

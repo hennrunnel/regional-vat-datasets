@@ -2,6 +2,8 @@ import re
 from typing import Dict, Any, List
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 from rich import print as rprint
 
@@ -11,7 +13,10 @@ IS_URL = "https://www.rsk.is/english/companies/value-added-tax/vat-rates/"
 
 def fetch_is_vat_rates() -> Dict[str, Any]:
     try:
-        resp = requests.get(IS_URL, timeout=30)
+        session = requests.Session()
+        retries = Retry(total=2, backoff_factor=0.5, status_forcelist=[429, 500, 502, 503, 504])
+        session.mount('https://', HTTPAdapter(max_retries=retries))
+        resp = session.get(IS_URL, timeout=30)
         resp.raise_for_status()
         return {"html": resp.text, "url": IS_URL}
     except Exception as e:
